@@ -1,0 +1,26 @@
+{
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Microsoft.AspNetCore": "Warning",
+        "IdentityServer4": "Information"
+      }
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=Translations;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "AppSettings": {
+    "Authority": "https://localhost:44319",
+    "ApiUrl": "https://localhost:19977",
+    "ASPNETCORE_ENVIRONMENT": "Development",
+    "Database": {
+      "Timeout": 30,
+      "ConnectionStringName": "DefaultConnection"
+    },
+    "Cache": {
+      "DefaultExpiration": "00:00:30"
+    }
+  }
+}

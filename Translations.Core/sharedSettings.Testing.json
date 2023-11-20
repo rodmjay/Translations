@@ -1,0 +1,11 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "<StoredInAzure>"
+  },
+  "AppSettings": {
+    "ASPNETCORE_ENVIRONMENT": "Testing",
+    "Authority": "https://translationpro-id-test.azurewebsites.net",
+    "ApiUrl": "https://translationpro-api-test.azurewebsites.net",
+    "AppUrl": "https://translationpro-app-test.azurewebsites.net"
+  }
+}

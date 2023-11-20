@@ -1,0 +1,5 @@
+﻿Id,Name,Enabled
+1,"Google Cloud Translate",1
+2,"Azure Translator by Microsoft",1
+3,"Amazon Translate",0
+4,DeepL,0
