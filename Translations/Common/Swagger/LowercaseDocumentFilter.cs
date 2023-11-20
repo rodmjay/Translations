@@ -23,11 +23,10 @@ public class LowercaseDocumentFilter : IDocumentFilter
         foreach (var path in paths)
         {
             var newKey = path.Key.ToLower();
-            if (newKey != path.Key)
-            {
-                removeKeys.Add(path.Key);
-                newPaths.Add(newKey, path.Value);
-            }
+            if (newKey == path.Key) continue;
+
+            removeKeys.Add(path.Key);
+            newPaths.Add(newKey, path.Value);
         }
 
         //	add the new keys

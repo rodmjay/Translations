@@ -7,12 +7,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Translations.Common.Bases;
 using Translations.Core.Managers;
+using Translations.Shared.Interfaces;
 using Translations.Shared.Options;
 using Translations.Shared.Outputs;
 
 namespace Translations.Controllers;
 
-public class TranslateController : BaseController
+public class TranslateController : BaseController, ITranslateController
 {
    
     private readonly TranslationManager _translationManager;

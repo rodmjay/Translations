@@ -19,7 +19,6 @@ namespace Translations.Common;
 [ExcludeFromCodeCoverage]
 public static class HostBuilderExtensions
 {
-    public static IConfiguration Configuration { get; set; }
 
     public static void ConfigureLogging(WebHostBuilderContext hostingContext, ILoggingBuilder logging)
     {

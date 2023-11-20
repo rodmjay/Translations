@@ -7,13 +7,5 @@
         <member name="M:Translations.Common.Bases.BaseController.#ctor(System.IServiceProvider)">
             <param name="serviceProvider"></param>
         </member>
-        <member name="M:Translations.Common.Validation.ValidationEngine.GetValidationContainer``1(``0)">
-            <summary>
-                Will validate an entity that implements IValidatableObject and DataAnnotations
-            </summary>
-            <typeparam name="T">The type that inherits the abstract basetype DomainObject</typeparam>
-            <param name="entity">The Entity to validate</param>
-            <returns></returns>
-        </member>
     </members>
 </doc>
