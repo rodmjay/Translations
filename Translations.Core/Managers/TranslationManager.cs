@@ -60,7 +60,7 @@ public class TranslationManager
             }
         }
 
-        return await _phraseService.GetPhrases<T>(createPhrases.Phrases);
+        return await _phraseService.GetPhrases<T>(createPhrases.Phrases, input.LanguageIds);
     }
     
 

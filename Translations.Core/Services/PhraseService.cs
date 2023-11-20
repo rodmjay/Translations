@@ -5,6 +5,7 @@
 #endregion
 
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -81,10 +82,18 @@ public partial class PhraseService : BaseService<Phrase>, IPhraseService
         return records;
     }
 
-    public Task<List<T>> GetPhrases<T>(int[] phraseIds) where T : PhraseOutput
+    public async Task<List<T>> GetPhrases<T>(int[] phraseIds, string[] languageIds) where T : PhraseOutput
     {
-        return Phrases.Where(x => phraseIds.Contains(x.Id))
+        var phrases = await Phrases.Where(x => phraseIds.Contains(x.Id))
             .ProjectTo<T>(ProjectionMapping).ToListAsync();
+
+        foreach (var phrase in phrases)
+        {
+            phrase.MachineTranslations =
+                phrase.MachineTranslations.Where(x => languageIds.Contains(x.LanguageId)).ToList();
+        }
+
+        return phrases;
     }
     
     public async Task<Dictionary<int, string>> GetPhraseTexts(int[] phraseIds)

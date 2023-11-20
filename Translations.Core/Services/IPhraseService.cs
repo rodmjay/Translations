@@ -22,5 +22,5 @@ public interface IPhraseService : IService<Phrase>
 
     Task<EnsurePhrasesResult> EnsurePhrases(string[] input);
 
-    Task<List<T>> GetPhrases<T>(int[] phraseIds) where T: PhraseOutput;
+    Task<List<T>> GetPhrases<T>(int[] phraseIds, string[] languageIds) where T: PhraseOutput;
 }
