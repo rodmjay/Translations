@@ -32,6 +32,9 @@ public class Phrase : BaseEntity<Phrase>, ICreated
 
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).UseIdentityColumn(1);
+
+        builder.HasIndex(x => x.Text).IsUnique();
+        builder.HasIndex(x => x.Text).IsClustered(false);
     }
     
 }
