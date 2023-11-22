@@ -22,6 +22,7 @@ public class Phrase : BaseEntity<Phrase>, ICreated
 
     public int Id { get; set; }
     public string Text { get; set; }
+    public string NormalizedText { get; set; }
     public DateTimeOffset Created { get; set; }
 
     public ICollection<MachineTranslation> MachineTranslations { get; set; }
@@ -33,8 +34,7 @@ public class Phrase : BaseEntity<Phrase>, ICreated
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).UseIdentityColumn(1);
 
-        builder.HasIndex(x => x.Text).IsUnique();
-        builder.HasIndex(x => x.Text).IsClustered(false);
+        builder.HasIndex(x => x.NormalizedText).IsUnique().IsClustered(false);
     }
     
 }

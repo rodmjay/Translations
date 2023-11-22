@@ -52,6 +52,8 @@ public class MachineTranslationService : BaseService<MachineTranslation>, IMachi
             {
                 foreach (var translation in translations)
                 {
+                    _logger.LogInformation(GetLogMessage("Saving Translation: {0} to engine: {1} with language: {2}"), phrase.Text, engine, translation.To);
+
                     var language = translation.To;
                     var machineTranslation = phrase.MachineTranslations
                         .First(x => x.EngineId == engine && x.LanguageId == language);

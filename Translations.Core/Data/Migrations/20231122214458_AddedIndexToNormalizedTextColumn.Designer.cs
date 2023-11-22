@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Translations.Core.Data;
 
@@ -11,9 +12,11 @@ using Translations.Core.Data;
 namespace Translations.Core.Data.Migrations
 {
     [DbContext(typeof(TranslationContext))]
-    partial class TranslationContextModelSnapshot : ModelSnapshot
+    [Migration("20231122214458_AddedIndexToNormalizedTextColumn")]
+    partial class AddedIndexToNormalizedTextColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Translations.Core.Data;
 
@@ -11,9 +12,11 @@ using Translations.Core.Data;
 namespace Translations.Core.Data.Migrations
 {
     [DbContext(typeof(TranslationContext))]
-    partial class TranslationContextModelSnapshot : ModelSnapshot
+    [Migration("20231122213835_NormalizedPhraseTextAdded")]
+    partial class NormalizedPhraseTextAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2114,18 +2117,18 @@ namespace Translations.Core.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedText")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedText")
+                    b.HasIndex("Text")
                         .IsUnique()
-                        .HasFilter("[NormalizedText] IS NOT NULL");
+                        .HasFilter("[Text] IS NOT NULL");
 
-                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("NormalizedText"), false);
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("Text"), false);
 
                     b.ToTable("Phrase", "Translations");
                 });

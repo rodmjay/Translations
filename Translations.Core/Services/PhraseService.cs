@@ -112,12 +112,15 @@ public partial class PhraseService : BaseService<Phrase>, IPhraseService
 
     public async Task<Result> EnsurePhrase(string text)
     {
-        var phrase = await Phrases.Where(x => x.Text == text).FirstOrDefaultAsync();
+        string normalizedText = text.ToUpper();
+
+        var phrase = await Phrases.Where(x => x.NormalizedText == normalizedText).FirstOrDefaultAsync();
         if (phrase != null) return Result.Success(phrase.Id);
 
         phrase = new Phrase()
         {
-            Text = text
+            Text = text,
+            NormalizedText = normalizedText
         };
 
         var records = Repository.Insert(phrase, true);
@@ -138,22 +141,25 @@ public partial class PhraseService : BaseService<Phrase>, IPhraseService
             .Distinct()
             .ToArray();
 
+        var normalizedTexts = texts.Select(x => x.ToUpper()).ToArray();
+
         var retVal = new EnsurePhrasesResult()
         {
             PhrasesRequested = texts.Length,
         };
 
-        var existingPhrases = await Phrases.Where(x => texts.Contains(x.Text)).ToListAsync();
+        var existingPhrases = await Phrases.Where(x => normalizedTexts.Contains(x.NormalizedText)).ToListAsync();
 
         retVal.ExistingPhrases = existingPhrases.Count;
 
         foreach (var text in texts)
         {
-            if (existingPhrases.Any(x => x.Text == text)) continue;
+            if (existingPhrases.Any(x => x.NormalizedText == text.ToUpper())) continue;
 
             var phrase = new Phrase()
             {
-                Text = text
+                Text = text,
+                NormalizedText = text.ToUpper()
             };
 
             Repository.Insert(phrase);
