@@ -137,5 +137,7 @@ public static class RestApiBuilderExtensions
             endpoints.MapControllers();
             //.RequireAuthorization("ApiScope");
         });
+
+        context.Database.EnsureCreated();
     }
 }
