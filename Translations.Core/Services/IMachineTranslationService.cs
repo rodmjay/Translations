@@ -13,7 +13,7 @@ namespace Translations.Core.Services;
 
 public interface IMachineTranslationService : IService<MachineTranslation>
 {
-    Task<Dictionary<TranslationEngine, Dictionary<string, List<string>>>> GetPendingTranslations(int[] phraseIds);
+    Task<Dictionary<TranslationEngine, Dictionary<string, List<string>>>> GetPendingTranslations(int[] phraseIds, string[] languageIds);
     Task<Result> AdjustWeights(int phraseId, string languageId, string oldText, string newText);
     Task<int> SaveTranslationsAsync(Dictionary<string, List<GenericTranslationResult>> input, TranslationEngine engine);
 }

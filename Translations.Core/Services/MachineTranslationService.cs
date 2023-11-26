@@ -69,10 +69,10 @@ public class MachineTranslationService : BaseService<MachineTranslation>, IMachi
     }
 
 
-    public async Task<Dictionary<TranslationEngine, Dictionary<string, List<string>>>> GetPendingTranslations(int[] phraseIds)
+    public async Task<Dictionary<TranslationEngine, Dictionary<string, List<string>>>> GetPendingTranslations(int[] phraseIds, string[] languageIds)
     {
         var translations = await MachineTranslations
-            .Where(x => x.Engine.Enabled && phraseIds.Contains(x.PhraseId) && x.Text == null)
+            .Where(x => x.Engine.Enabled && phraseIds.Contains(x.PhraseId) && languageIds.Contains(x.LanguageId) && x.Text == null)
             .ToListAsync();
 
         var retVal = translations.GroupBy(x => x.EngineId).ToDictionary(x => x.Key,

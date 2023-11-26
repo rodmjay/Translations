@@ -41,7 +41,7 @@ public class TranslationManager
         
         await _phraseService.EnsurePhrasesWithLanguages(createPhrases.Phrases, input.LanguageIds);
 
-        var pending = await _machineTranslationService.GetPendingTranslations(createPhrases.Phrases);
+        var pending = await _machineTranslationService.GetPendingTranslations(createPhrases.Phrases, input.LanguageIds);
 
         foreach (var (engine, phraseWithLanguages) in pending)
         {
